@@ -3,6 +3,17 @@ import { api } from "../api";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../_utils/utils";
 
+interface Parameters {
+  params: {
+    page: number;
+    perPage: number;
+    location?: string;
+    form?: string;
+    transmission?: string;
+    engine?: string;
+  };
+}
+
 export async function GET(request: NextRequest) {
   try {
     const page = Number(request.nextUrl.searchParams.get("page") ?? 1);
@@ -10,17 +21,28 @@ export async function GET(request: NextRequest) {
     const form = request.nextUrl.searchParams.get("form") ?? "";
     const transmission = request.nextUrl.searchParams.get("transmission") ?? "";
     const engine = request.nextUrl.searchParams.get("engine") ?? "";
-    
-    const res = await api("/campers", {
+
+    const parameters: Parameters = {
       params: {
-        page,
+        page: page,
         perPage: 4,
-        location,
-        form,
-        transmission, 
-        engine,
       },
-    });
+    };
+
+    if (location !== undefined) {
+      parameters.params.location = location;
+    }
+    if (form !== undefined) {
+      parameters.params.form = form;
+    }
+    if (transmission !== undefined) {
+      parameters.params.transmission = transmission;
+    }
+    if (engine !== undefined) {
+      parameters.params.engine = engine;
+    }
+
+    const res = await api.get("/campers", parameters);
 
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {

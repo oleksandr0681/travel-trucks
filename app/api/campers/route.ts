@@ -5,14 +5,14 @@ import { logErrorResponse } from "../_utils/utils";
 import { RequestCamperParameters } from "@/types/camper";
 
 export async function GET(request: NextRequest) {
-  try {
-    const page = Number(request.nextUrl.searchParams.get("page") ?? 1);
-    const perPage = Number(request.nextUrl.searchParams.get("perPage") ?? 4);
-    const location = request.nextUrl.searchParams.get("location") ?? "";
-    const form = request.nextUrl.searchParams.get("form") ?? "";
-    const transmission = request.nextUrl.searchParams.get("transmission") ?? "";
-    const engine = request.nextUrl.searchParams.get("engine") ?? "";
+  const page = Number(request.nextUrl.searchParams.get("page") ?? 1);
+  const perPage = Number(request.nextUrl.searchParams.get("perPage") ?? 4);
+  const location = request.nextUrl.searchParams.get("location") ?? "";
+  const form = request.nextUrl.searchParams.get("form") ?? "";
+  const transmission = request.nextUrl.searchParams.get("transmission") ?? "";
+  const engine = request.nextUrl.searchParams.get("engine") ?? "";
 
+  try {
     const parameters: RequestCamperParameters = {
       params: {
         page: page,

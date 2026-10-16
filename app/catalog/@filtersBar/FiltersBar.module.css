@@ -1,0 +1,6 @@
+.form {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--inputs);
+}

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Campers of your dreams. You can find everything you want in our catalog.",
     url: "/hero-image-1x.webp",
-    siteName: "NoteHub",
+    siteName: "TravelTrucks",
     images: [
       {
         url: "/hero-image-1x.webp",

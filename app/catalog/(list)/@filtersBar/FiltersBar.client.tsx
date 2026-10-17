@@ -1,8 +1,9 @@
 "use client";
 
+import { MdOutlineClose } from "react-icons/md";
 import css from "./FiltersBar.module.css";
 import { useId, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 
 const FiltersFormSchema = Yup.object().shape({
@@ -181,7 +182,7 @@ export default function FiltersBarClient() {
       <div className={css.buttons}>
         <button type="submit" className={css["search-button"]}>Search</button>
         <button type="reset" onClick={handleClear} className={css["clear-button"]}>
-          Clear filters
+          <MdOutlineClose className={css["clear-symbol"]} /> Clear filters
         </button>
       </div>
     </form>

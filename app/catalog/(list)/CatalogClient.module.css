@@ -1,0 +1,20 @@
+.camper-list-wrapper {
+  padding-bottom: 52px;
+}
+
+.load-more-button {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border: 1px solid var(--gray-light);
+  border-radius: 200px;
+  padding: 16px 32px;
+  min-width: 145px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main);
+}

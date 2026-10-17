@@ -1,0 +1,117 @@
+.list {
+  width: 888px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+.camper-card {
+  border-radius: 16px;
+  padding: 24px;
+  width: 888px;
+  height: 312px;
+  display: flex;
+  column-gap: 24px;
+  background-color: var(--inputs);
+}
+
+.camper-card img {
+  border-radius: 16px;
+  width: 219px;
+  height: 240px;
+}
+
+.text-container {
+  width: 524px;
+  height: 64px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name,
+.price {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--main);
+  display: flex;
+  align-items: center;
+}
+
+.details {
+  margin-top: 8px;
+  display: flex;
+  column-gap: 16px;
+}
+
+.reviews {
+  height: 24px;
+}
+
+.reviews p {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  margin-right: 4px;
+  color: var(--rating);
+}
+
+.location {
+  height: 24px;
+}
+
+.supporting-text {
+  margin-top: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 524px;
+}
+
+.badges-container {
+  margin-top: 24px;
+  display: flex;
+  column-gap: 8px;
+}
+
+.badges-container p {
+  border-radius: 100px;
+  padding: 12px 18px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--main);
+  background: var(--badges);
+  mix-blend-mode: multiply;
+}
+
+.badges-container p::first-letter {
+  text-transform: uppercase;
+}
+
+.button {
+  margin-top: 24px;
+  border-radius: 200px;
+  border: none;
+  padding: 16px 60px;
+  min-width: 173px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  background-color: var(--grey-green);
+}

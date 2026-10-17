@@ -1,4 +1,8 @@
-import { CampersResponse, RequestCamperParameters } from "@/types/camper";
+import {
+  Camper,
+  CampersResponse,
+  RequestCamperParameters,
+} from "@/types/camper";
 import axios, { AxiosError } from "axios";
 
 export type ApiError = AxiosError<{ error: string }>;
@@ -48,3 +52,9 @@ export async function fetchCampers({
 
   return response.data;
 }
+
+export const fetchCamperById = async (id: string): Promise<Camper> => {
+  const response = await axios.get<Camper>(`/campers/${id}`);
+
+  return response.data;
+};

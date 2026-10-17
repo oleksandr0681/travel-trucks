@@ -24,6 +24,7 @@ export interface Camper {
       order: number;
     },
   ];
+  coverImage: string;
 }
 
 export interface CampersResponse {

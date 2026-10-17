@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     title: "TravelTrucks",
     description:
       "Campers of your dreams. You can find everything you want in our catalog.",
-    url: "/hero-image-1x.webp",
+    url: "https://travel-trucks-gray-nine.vercel.app/hero-image-1x.webp",
     siteName: "TravelTrucks",
     images: [
       {
-        url: "/hero-image-1x.webp",
+        url: "https://travel-trucks-gray-nine.vercel.app/hero-image-1x.webp",
         width: 1200,
         height: 630,
         alt: "TravelTrucks",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "TravelTrucks",
     description:
       "Campers of your dreams. You can find everything you want in our catalog.",
-    images: ["/hero-image-1x.webp"],
+    images: ["https://travel-trucks-gray-nine.vercel.app/hero-image-1x.webp"],
   },
 };
 

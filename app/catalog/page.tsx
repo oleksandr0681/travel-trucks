@@ -20,9 +20,10 @@ async function Content({ searchParams }: CatalogProps) {
   const form = (searchParameters.form as string) || undefined;
   const transmission = (searchParameters.transmission as string) || undefined;
   const engine = (searchParameters.engine as string) || undefined;
+  const location = (searchParameters.location as string) || undefined;
 
   await queryClient.prefetchQuery({
-    queryKey: ["campers", form, transmission, engine],
+    queryKey: ["campers", form, transmission, engine, location],
     queryFn: () => fetchCampers({}),
   });
 

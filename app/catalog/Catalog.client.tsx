@@ -10,6 +10,7 @@ export default function CatalogClient() {
     const form = searchParameters.get("form") || undefined;
     const transmission = searchParameters.get("transmission") || undefined;
     const engine = searchParameters.get("engine") || undefined;
+    const location = searchParameters.get("location") || undefined;
 
   const {
     data: campersData,
@@ -17,9 +18,9 @@ export default function CatalogClient() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["campers", form, transmission, engine],
+    queryKey: ["campers", form, transmission, engine, location],
     queryFn: () => {
-      return fetchCampers({form, transmission, engine});
+      return fetchCampers({form, transmission, engine, location});
     },
     refetchOnMount: false,
   });
@@ -34,6 +35,6 @@ export default function CatalogClient() {
 
   
   return (
-    <div></div>
+    <div><p>{campersData.total}</p></div>
   );
 }

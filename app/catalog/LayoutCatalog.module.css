@@ -1,4 +1,6 @@
 .layout-container {
+  padding-top: 48px;
   display: flex;
   flex-direction: row;
+  column-gap: 65px;
 }

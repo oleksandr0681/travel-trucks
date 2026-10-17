@@ -16,10 +16,6 @@
   padding-top: 188px;
 }
 
-.title-wrapper {
-  /* display: flex; */
-}
-
 .page-title {
   font-family: var(--font-inter);
   font-weight: 600;

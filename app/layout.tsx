@@ -18,6 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://travel-trucks-gray-nine.vercel.app"),
   title: "TravelTrucks",
   description:
     "Campers of your dreams. You can find everything you want in our catalog.",

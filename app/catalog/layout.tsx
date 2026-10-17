@@ -15,7 +15,6 @@ export default function CatalogLayout({
       <Header />
       <main>
         <section>
-            <h1>Catalog</h1>
           <div className={`container ${css["layout-container"]}`}>
             <div aria-label="filters bar">{filtersBar}</div>
             <div aria-label="campers">{children}</div>

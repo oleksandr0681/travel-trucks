@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.review-card {
+  border-radius: 16px;
+  padding: 16px;
+  width: 623px;
+  background-color: var(--inputs);
+}
+
+.comment {
+    margin-top: 16px;
+}

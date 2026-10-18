@@ -12,8 +12,14 @@ import { FaEuroSign } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";
 import BookForm from "@/components/BookForm/BookForm";
+import { Review } from "@/types/review";
+import ReviewList from "@/components/ReviewList/ReviewList";
 
-export default function CamperDetailsClient() {
+interface CamperDetailsClientProps {
+  reviews: Review[];
+}
+
+export default function CamperDetailsClient({reviews}: CamperDetailsClientProps) {
   const { camperId } = useParams<{ camperId: string }>();
 
   const { data, isLoading, isError, error } = useQuery({
@@ -140,14 +146,15 @@ export default function CamperDetailsClient() {
             <div className={`container`}>
               <h2 className={css["reviews-section-title"]}>Reviews</h2>
               <div className={css["review-blocks-container"]}>
-                <div className={css["review-block"]}></div>
+                <div className={css["review-block"]}>
+                  <ReviewList reviews={reviews} />
+                </div>
 
                 <div className={css["form-block"]}>
                   <h3 className={css["form-title"]}>Book your campervan now</h3>
                   <p className={css["form-supporting-text"]}>
                     Stay connected! We are always ready to help you.
                   </p>
-
                   <BookForm camperId={camperId} />
                 </div>
               </div>

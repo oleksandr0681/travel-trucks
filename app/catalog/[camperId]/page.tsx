@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { fetchCamperById } from "@/lib/api/api";
+import { fetchCamperById, fetchCamperReviewsById } from "@/lib/api/api";
 import {
   QueryClient,
   dehydrate,
@@ -50,6 +50,7 @@ async function CamperDetailsContent({ params }: CamperDetailsProps) {
   "use cache"
 
   const { camperId } = await params;
+  const response = await fetchCamperReviewsById(camperId);
 
   const queryClient = new QueryClient();
   await queryClient.query({
@@ -61,7 +62,7 @@ async function CamperDetailsContent({ params }: CamperDetailsProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CamperDetailsClient />
+      <CamperDetailsClient reviews={response} />
     </HydrationBoundary>
   );
 }

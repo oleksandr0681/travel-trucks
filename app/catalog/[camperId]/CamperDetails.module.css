@@ -115,9 +115,6 @@
   background-color: var(--inputs);
 }
 
-.features-section {
-}
-
 .features-section-text {
   font-weight: 600;
   font-size: 24px;
@@ -145,15 +142,16 @@
   mix-blend-mode: multiply;
 }
 
+.badges-container p::first-letter {
+  text-transform: uppercase;
+}
+
 .line {
   margin: 16px 0;
   display: block;
   border: 1px solid var(--gray-light);
   width: 100%;
   height: 0;
-}
-
-.details-info {
 }
 
 .details-info-row {

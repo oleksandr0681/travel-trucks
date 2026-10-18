@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  font-family: var(--font-inter);
 }
 
 .review-card {
@@ -11,6 +12,38 @@
   background-color: var(--inputs);
 }
 
+.person {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+}
+
+.image {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.image p {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--grey-green);
+}
+
+.name p {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
 .comment {
-    margin-top: 16px;
+  margin-top: 16px;
 }

@@ -9,7 +9,6 @@ import { useSearchParams } from "next/navigation";
 import CamperList from "@/components/CamperList/CamperList";
 import Loader from "@/components/Loader/Loader";
 import NotFound from "@/components/NotFound/NotFound";
-import toast from "react-hot-toast";
 import css from "./CatalogClient.module.css";
 
 export default function CatalogClient() {
@@ -42,7 +41,6 @@ export default function CatalogClient() {
   });
 
   if (isError || campersData === undefined) {
-    toast.error("Something went wrong.");
     return <p>{error?.message}</p>;
   }
 

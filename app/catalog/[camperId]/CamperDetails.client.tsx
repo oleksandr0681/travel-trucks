@@ -5,12 +5,13 @@ import { fetchCamperById } from "@/lib/api/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Loader from "@/components/Loader/Loader";
-import toast from "react-hot-toast";
+import toast, { Toaster } from 'react-hot-toast';
 import css from "./CamperDetails.module.css";
 import Image from "next/image";
 import { FaEuroSign } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";
+import BookForm from "@/components/BookForm/BookForm";
 
 export default function CamperDetailsClient() {
   const { camperId } = useParams<{ camperId: string }>();
@@ -147,46 +148,13 @@ export default function CamperDetailsClient() {
                     Stay connected! We are always ready to help you.
                   </p>
 
-                  <form className={css["book-form"]}>
-                    <div className={css["book-form-field"]}>
-                      <input
-                        id="book-input-name"
-                        type="text"
-                        name="book-name"
-                        required
-                        placeholder="Name*"
-                        aria-label="book name input"
-                        className={css["book-form-input"]}
-                      />
-                      <p className={css["book-form-error-text"]}>
-                        Please enter your name.
-                      </p>
-                    </div>
-
-                    <div className={css["book-form-field"]}>
-                      <input
-                        id="book-input-email"
-                        type="email"
-                        name="book-email"
-                        required
-                        placeholder="Email*"
-                        aria-label="book email input"
-                        className={css["book-form-input"]}
-                      />
-                      <p className={css["book-form-error-text"]}>
-                        Please enter your email.
-                      </p>
-                    </div>
-
-                    <button type="submit" className={css["book-form-button"]}>
-                      Send
-                    </button>
-                  </form>
+                  <BookForm camperId={camperId} />
                 </div>
               </div>
             </div>
           )}
         </section>
+        <Toaster />
       </main>
     </>
   );

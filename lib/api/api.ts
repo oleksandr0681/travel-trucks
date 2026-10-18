@@ -3,6 +3,7 @@ import {
   CampersResponse,
   RequestCamperParameters,
 } from "@/types/camper";
+import { UserData } from "@/types/user";
 import axios, { AxiosError } from "axios";
 
 export type ApiError = AxiosError<{ error: string }>;
@@ -18,6 +19,15 @@ interface FetchCamperParameters {
   form?: string;
   transmission?: string;
   engine?: string;
+}
+
+export interface BookCampervanData {
+  camperId: string;
+  userData: UserData;
+}
+
+export interface Message {
+  message?: string;
 }
 
 export async function fetchCampers({
@@ -58,3 +68,14 @@ export const fetchCamperById = async (id: string): Promise<Camper> => {
 
   return response.data;
 };
+
+export async function bookCampervan(
+  bookData: BookCampervanData,
+): Promise<Message> {
+  const response = await axios.post<UserData>(
+    `/campers/${bookData.camperId}/booking-requests`,
+    bookData.userData,
+  );
+
+  return response.data;
+}

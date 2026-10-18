@@ -26,10 +26,20 @@ export default function NotFound() {
         Try adjusting your search or clearing some filters.
       </p>
       <div className={css.buttons}>
-        <button type="button" onClick={handleClick} className={css["clear-button"]}>
+        <button
+          type="button"
+          onClick={handleClick}
+          className={css["clear-button"]}
+        >
           <MdOutlineClose className={css["clear-symbol"]} /> Clear filters
         </button>
-        <button type="button" onClick={handleClick} className={css["view-button"]}>View all campers</button>
+        <button
+          type="button"
+          onClick={handleClick}
+          className={css["view-button"]}
+        >
+          View all campers
+        </button>
       </div>
     </div>
   );

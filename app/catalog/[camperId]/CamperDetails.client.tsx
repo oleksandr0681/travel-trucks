@@ -10,6 +10,7 @@ import css from "./CamperDetails.module.css";
 import Image from "next/image";
 import { FaEuroSign } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { CiMap } from "react-icons/ci";
 
 export default function CamperDetailsClient() {
   const { camperId } = useParams<{ camperId: string }>();
@@ -25,6 +26,7 @@ export default function CamperDetailsClient() {
   if (isError) {
     toast.error(error.message);
   }
+  console.log(data);
 
   return (
     <>
@@ -61,25 +63,69 @@ export default function CamperDetailsClient() {
 
                 <div className={css.info}>
                   <div className={css.header}>
-                    <h1>{data?.name}</h1>
-                    <div className={css["text-container"]}>
-                      <div className={css.title}></div>
-                      <div className={css.details}>
-                        <div className={css.reviews}>
-                          <p>
-                            <FaStar className={css.star} /> {data.rating} (
-                            {data.totalReviews} Reviews)
-                          </p>
-                        </div>
-                        <div className={css.location}>
-                          <p>{data.location}</p>
-                        </div>
+                    <div className={css["title-wrapper"]}>
+                      <h1 className={css.title}>{data.name}</h1>
+                    </div>
+                    <div className={css.details}>
+                      <div className={css.reviews}>
+                        <p>
+                          <FaStar className={css.star} /> {data.rating} (
+                          {data.totalReviews} Reviews)
+                        </p>
                       </div>
-                      <p className={css.price}>
-                        <FaEuroSign />
-                        {data.price}
+                      <div className={css.location}>
+                        <p>
+                          <CiMap className={css.map} /> {data.location}
+                        </p>
+                      </div>
+                    </div>
+                    <p className={css.price}>
+                      <FaEuroSign />
+                      {data.price}
+                    </p>
+                    <p className={css.description}>{data.description}</p>
+                  </div>
+
+                  <div className={css["details-wrapper"]}>
+                    <div className={css["features-section"]}>
+                      <p className={css["features-section-text"]}>
+                        Vehicle details
                       </p>
-                      <p className={css.description}>{data.description}</p>
+                    </div>
+                    <div className={css["badges-container"]}>
+                      <p>{data.transmission}</p>
+                      <p>{data.engine}</p>
+                      <p>{data.form}</p>
+                      {data.amenities.map((amenity) => (
+                        <p key={amenity}>{amenity}</p>
+                      ))}
+                    </div>
+                    <span className={css.line}></span>
+                    <div className={css["details-info"]}>
+                      <div className={css["details-info-row"]}>
+                        <p>Form</p>
+                        <p>{data.form}</p>
+                      </div>
+                      <div className={css["details-info-row"]}>
+                        <p>Length</p>
+                        <p>{data.length}</p>
+                      </div>
+                      <div className={css["details-info-row"]}>
+                        <p>Width</p>
+                        <p>{data.width}</p>
+                      </div>
+                      <div className={css["details-info-row"]}>
+                        <p>Height</p>
+                        <p>{data.height}</p>
+                      </div>
+                      <div className={css["details-info-row"]}>
+                        <p>Tank</p>
+                        <p>{data.tank}</p>
+                      </div>
+                      <div className={css["details-info-row"]}>
+                        <p>Consumption</p>
+                        <p>{data.consumption}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

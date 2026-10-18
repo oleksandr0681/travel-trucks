@@ -37,6 +37,9 @@
 .info {
   width: 650px;
   height: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header {
@@ -44,6 +47,13 @@
   height: 304px;
   border-radius: 16px;
   background-color: var(--inputs);
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--main);
 }
 
 .details {
@@ -70,6 +80,15 @@
   height: 24px;
 }
 
+.location p {
+  display: flex;
+  align-items: center;
+}
+
+.map {
+  margin-right: 4px;
+}
+
 .price {
   margin-top: 16px;
   font-weight: 600;
@@ -86,4 +105,72 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--text);
+}
+
+.details-wrapper {
+  border-radius: 16px;
+  padding: 24px;
+  width: 650px;
+  height: 360px;
+  background-color: var(--inputs);
+}
+
+.features-section {
+}
+
+.features-section-text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--main);
+}
+
+.badges-container {
+  margin-top: 16px;
+  max-width: 602px;
+  display: flex;
+  overflow: hidden;
+  column-gap: 8px;
+}
+
+.badges-container p {
+  border-radius: 100px;
+  padding: 12px 18px;
+  height: 48px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--main);
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
+}
+
+.line {
+  margin: 16px 0;
+  display: block;
+  border: 1px solid var(--gray-light);
+  width: 100%;
+  height: 0;
+}
+
+.details-info {
+}
+
+.details-info-row {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-info-row:last-child {
+  margin-bottom: 0;
+}
+
+.details-info-row p {
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.details-info-row p::first-letter {
+  text-transform: uppercase;
 }

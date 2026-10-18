@@ -141,7 +141,48 @@ export default function CamperDetailsClient() {
               <div className={css["review-blocks-container"]}>
                 <div className={css["review-block"]}></div>
 
-                <div className={css["form-block"]}></div>
+                <div className={css["form-block"]}>
+                  <h3 className={css["form-title"]}>Book your campervan now</h3>
+                  <p className={css["form-supporting-text"]}>
+                    Stay connected! We are always ready to help you.
+                  </p>
+
+                  <form className={css["book-form"]}>
+                    <div className={css["book-form-field"]}>
+                      <input
+                        id="book-input-name"
+                        type="text"
+                        name="book-name"
+                        required
+                        placeholder="Name*"
+                        aria-label="book name input"
+                        className={css["book-form-input"]}
+                      />
+                      <p className={css["book-form-error-text"]}>
+                        Please enter your name.
+                      </p>
+                    </div>
+
+                    <div className={css["book-form-field"]}>
+                      <input
+                        id="book-input-email"
+                        type="email"
+                        name="book-email"
+                        required
+                        placeholder="Email*"
+                        aria-label="book email input"
+                        className={css["book-form-input"]}
+                      />
+                      <p className={css["book-form-error-text"]}>
+                        Please enter your email.
+                      </p>
+                    </div>
+
+                    <button type="submit" className={css["book-form-button"]}>
+                      Send
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           )}

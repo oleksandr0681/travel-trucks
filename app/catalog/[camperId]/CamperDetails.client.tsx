@@ -5,21 +5,24 @@ import { fetchCamperById } from "@/lib/api/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Loader from "@/components/Loader/Loader";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import css from "./CamperDetails.module.css";
-import Image from "next/image";
+// import Image from "next/image";
 import { FaEuroSign } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";
 import BookForm from "@/components/BookForm/BookForm";
 import { Review } from "@/types/review";
 import ReviewList from "@/components/ReviewList/ReviewList";
+import CamperSwiper from "@/components/CamperSwiper/CamperSwiper";
 
 interface CamperDetailsClientProps {
   reviews: Review[];
 }
 
-export default function CamperDetailsClient({reviews}: CamperDetailsClientProps) {
+export default function CamperDetailsClient({
+  reviews,
+}: CamperDetailsClientProps) {
   const { camperId } = useParams<{ camperId: string }>();
 
   const { data, isLoading, isError, error } = useQuery({
@@ -44,27 +47,9 @@ export default function CamperDetailsClient({reviews}: CamperDetailsClientProps)
             <div className={`container`}>
               <div className={css.top}>
                 <div className={css["image-and-thumbnails"]}>
-                  <Image
-                    src={data.gallery[0].original}
-                    alt={data.name}
-                    loading="eager"
-                    width={638}
-                    height={505}
-                    className={css.image}
+                  <CamperSwiper
+                    images={data.gallery.map((image) => image.original)}
                   />
-                  <div className={css.thumbnails}>
-                    {data.gallery.map((thumbnail) => (
-                      <Image
-                        key={thumbnail.id}
-                        src={thumbnail.thumb}
-                        alt="Camper image"
-                        loading="eager"
-                        width={136}
-                        height={144}
-                        className={css.thumbnail}
-                      />
-                    ))}
-                  </div>
                 </div>
 
                 <div className={css.info}>
@@ -161,6 +146,16 @@ export default function CamperDetailsClient({reviews}: CamperDetailsClientProps)
             </div>
           )}
         </section>
+
+        {/* <section>
+          {data !== null && data !== undefined && (
+            <div className={`container`}>
+              <CamperSwiper
+                images={data.gallery.map((image) => image.original)}
+              />
+            </div>
+          )}
+        </section> */}
         <Toaster />
       </main>
     </>

@@ -26,14 +26,13 @@ export default function CamperDetailsClient() {
   if (isError) {
     toast.error(error.message);
   }
-  console.log(data);
 
   return (
     <>
       <Header />
       <main>
-        <section className={css["camper-details-section"]}>
-          {isLoading && <Loader />}
+        {isLoading && <Loader />}
+        <section className={css["top-section"]}>
           {data !== null && data !== undefined && (
             <div className={`container`}>
               <div className={css.top}>
@@ -101,6 +100,7 @@ export default function CamperDetailsClient() {
                       ))}
                     </div>
                     <span className={css.line}></span>
+
                     <div className={css["details-info"]}>
                       <div className={css["details-info-row"]}>
                         <p>Form</p>
@@ -129,6 +129,19 @@ export default function CamperDetailsClient() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className={css["reviews-section"]}>
+          {data !== null && data !== undefined && (
+            <div className={`container`}>
+              <h2 className={css["reviews-section-title"]}>Reviews</h2>
+              <div className={css["review-blocks-container"]}>
+                <div className={css["review-block"]}></div>
+
+                <div className={css["form-block"]}></div>
               </div>
             </div>
           )}

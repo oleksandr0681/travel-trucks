@@ -1,4 +1,4 @@
-.camper-details-section {
+.top-section {
   padding-top: 64px;
   font-family: var(--font-inter);
 }
@@ -171,4 +171,36 @@
 
 .details-info-row p::first-letter {
   text-transform: uppercase;
+}
+
+.reviews-section {
+  padding-top: 88px;
+  padding-bottom: 232px;
+  font-family: var(--font-inter);
+}
+
+.reviews-section-title {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--main);
+}
+
+.review-blocks-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-block {
+  width: 623px;
+  height: 384px;
+}
+
+.form-block {
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 44px;
+  width: 641px;
+  height: 382px;
 }

@@ -23,7 +23,7 @@ export default function CatalogClient() {
     data: campersData,
     fetchNextPage,
     hasNextPage,
-    isFetching,
+    isFetching, isFetchingNextPage,
     isLoading,
     isError,
     error,
@@ -48,7 +48,7 @@ export default function CatalogClient() {
 
   return campers && campers.length > 0 ? (
     <div className={css["camper-list-wrapper"]}>
-      {isLoading && <Loader />}
+      {isFetchingNextPage && <Loader />}
       <CamperList campers={campers} />
       {hasNextPage && (
         <button

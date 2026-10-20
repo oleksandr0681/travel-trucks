@@ -64,6 +64,7 @@ export default function FiltersBarClient() {
           id={`${fieldId}-location`}
           type="text"
           name="location"
+          placeholder="City"
           className={css.input}
         />
       </div>

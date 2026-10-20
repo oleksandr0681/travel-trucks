@@ -41,6 +41,10 @@
   background: var(--white);
 }
 
+.input::placeholder {
+  color: var(--gray);
+}
+
 .label {
   margin-bottom: 8px;
   display: flex;

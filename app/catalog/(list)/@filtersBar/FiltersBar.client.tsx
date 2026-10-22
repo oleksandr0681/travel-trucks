@@ -5,6 +5,7 @@ import css from "./FiltersBar.module.css";
 import { useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
+import { CiMap } from "react-icons/ci";
 
 const FiltersFormSchema = Yup.object().shape({
   location: Yup.string(),
@@ -48,10 +49,17 @@ export default function FiltersBarClient() {
       }
     }
     if (isValid === true) {
-      if (formData.get("location") !== "" && formData.get("location") !== undefined) {
-        router.push(`/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}&location=${formData.get("location")}`);
+      if (
+        formData.get("location") !== "" &&
+        formData.get("location") !== undefined
+      ) {
+        router.push(
+          `/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}&location=${formData.get("location")}`,
+        );
       } else {
-        router.push(`/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}`);
+        router.push(
+          `/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}`,
+        );
       }
     }
   };
@@ -60,13 +68,16 @@ export default function FiltersBarClient() {
     <form action={handleSubmit} className={css.form}>
       <div className={css["form-group"]}>
         <label htmlFor={`${fieldId}-location`}>Location</label>
-        <input
-          id={`${fieldId}-location`}
-          type="text"
-          name="location"
-          placeholder="City"
-          className={css.input}
-        />
+        <span className={css["input-wrapper"]}>
+          <input
+            id={`${fieldId}-location`}
+            type="text"
+            name="location"
+            placeholder="City"
+            className={`${css.input} ${css["location-input"]}`}
+          />
+          <CiMap className={css.map} />
+        </span>
       </div>
 
       <h2 className={css["form-title"]}>Filters</h2>
@@ -181,8 +192,14 @@ export default function FiltersBarClient() {
         )}
       </div>
       <div className={css.buttons}>
-        <button type="submit" className={css["search-button"]}>Search</button>
-        <button type="reset" onClick={handleClear} className={css["clear-button"]}>
+        <button type="submit" className={css["search-button"]}>
+          Search
+        </button>
+        <button
+          type="reset"
+          onClick={handleClear}
+          className={css["clear-button"]}
+        >
           <MdOutlineClose className={css["clear-symbol"]} /> Clear filters
         </button>
       </div>

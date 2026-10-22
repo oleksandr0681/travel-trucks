@@ -30,6 +30,7 @@ export default function ImageGallery({ images = [] }: ImageGalleryProps) {
   return (
     <div className={styles.galleryContainer}>
       <Swiper
+        loop={true}
         spaceBetween={10}
         navigation={false}
         thumbs={{
@@ -46,7 +47,7 @@ export default function ImageGallery({ images = [] }: ImageGalleryProps) {
               fill
               priority={index === 0}
               className={styles.image}
-              sizes="(max-width: 638px) 100vw, 638px"
+              sizes="(max-width: 638px) 100%, 638px"
             />
           </SwiperSlide>
         ))}
@@ -54,6 +55,7 @@ export default function ImageGallery({ images = [] }: ImageGalleryProps) {
 
       <Swiper
         onSwiper={setThumbsSwiper}
+        loop={true}
         spaceBetween={31}
         slidesPerView="auto"
         freeMode={true}

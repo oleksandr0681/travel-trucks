@@ -7,7 +7,6 @@ import { useParams } from "next/navigation";
 import Loader from "@/components/Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./CamperDetails.module.css";
-// import Image from "next/image";
 import { FaEuroSign } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";

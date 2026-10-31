@@ -146,15 +146,6 @@ export default function CamperDetailsClient({
           )}
         </section>
 
-        {/* <section>
-          {data !== null && data !== undefined && (
-            <div className={`container`}>
-              <CamperSwiper
-                images={data.gallery.map((image) => image.original)}
-              />
-            </div>
-          )}
-        </section> */}
         <Toaster />
       </main>
     </>

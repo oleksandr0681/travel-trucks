@@ -11,7 +11,7 @@ import * as Yup from "yup";
 
 const BookFormSchema = Yup.object().shape({
   name: Yup.string()
-    .matches(/^[^0-9]*$/)
+    .matches(/\p{L}/u)
     .required(),
   email: Yup.string().email().required(),
 });
@@ -97,37 +97,83 @@ export default function BookForm({ camperId }: BookFormProps) {
 
   return (
     <form ref={formRef} action={formAction} className={css["book-form"]}>
-      <div className={css["book-form-field"]}>
-        {state.errors?.name && <label htmlFor={`${fieldId}-name`}>Name*</label>}
-        <input
-          id={`${fieldId}-name`}
-          type="text"
-          name="name"
-          required
-          placeholder="Name*"
-          defaultValue={state.values.name}
-          aria-label="book name input"
-          className={css["book-form-input"]}
-        />
-        <p className={css["book-form-error-text"]}>Please enter your name.</p>
-      </div>
+      {state.errors?.name ? (
+        <div className={css["book-form-field"]}>
+          <label htmlFor={`${fieldId}-name`} className={css["error-label"]}>
+            Name*
+          </label>
+          <input
+            id={`${fieldId}-name`}
+            type="text"
+            name="name"
+            required
+            placeholder="Name*"
+            defaultValue={state.values.name}
+            aria-label="book name input"
+            className={`${css["book-form-input"]} ${css["book-form-input-invalid"]}`}
+          />
+          <p className={css["book-form-name-error-text"]}>
+            Please enter your name.
+          </p>
+          <svg width="20" height="20" className={css["exclamation-point"]}>
+            <use href="/exclamation-point.svg"></use>
+          </svg>
+        </div>
+      ) : (
+        <div className={css["book-form-field"]}>
+          <input
+            id={`${fieldId}-name`}
+            type="text"
+            name="name"
+            required
+            placeholder="Name*"
+            defaultValue={state.values.name}
+            aria-label="book name input"
+            className={css["book-form-input"]}
+          />
+          <p className={css["book-form-error-text"]}>Please enter your name.</p>
+        </div>
+      )}
 
-      <div className={css["book-form-field"]}>
-        {state.errors?.email && (
-          <label htmlFor={`${fieldId}-email`}>Email*</label>
-        )}
-        <input
-          id={`${fieldId}-email`}
-          type="email"
-          name="email"
-          required
-          placeholder="Email*"
-          defaultValue={state.values.email}
-          aria-label="book email input"
-          className={css["book-form-input"]}
-        />
-        <p className={css["book-form-error-text"]}>Please enter your email.</p>
-      </div>
+      {state.errors?.email ? (
+        <div className={css["book-form-field"]}>
+          <label htmlFor={`${fieldId}-email`} className={css["error-label"]}>
+            Email*
+          </label>
+          <input
+            id={`${fieldId}-email`}
+            type="email"
+            name="email"
+            required
+            placeholder="Email*"
+            defaultValue={state.values.email}
+            aria-label="book email input"
+            className={`${css["book-form-input"]} ${css["book-form-input-invalid"]}`}
+          />
+          <p className={css["book-form-email-error-text"]}>
+            Please enter your email.
+          </p>
+          <svg width="20" height="20" className={css["exclamation-point"]}>
+            <use href="/exclamation-point.svg"></use>
+          </svg>
+        </div>
+      ) : (
+        <div className={css["book-form-field"]}>
+          <input
+            id={`${fieldId}-email`}
+            type="email"
+            name="email"
+            required
+            placeholder="Email*"
+            defaultValue={state.values.email}
+            aria-label="book email input"
+            className={css["book-form-input"]}
+          />
+          <p className={css["book-form-error-text"]}>
+            Please enter your email.
+          </p>
+        </div>
+      )}
 
       <button
         type="submit"

@@ -10,9 +10,7 @@ import { bookCampervan } from "@/lib/api/api";
 import * as Yup from "yup";
 
 const BookFormSchema = Yup.object().shape({
-  name: Yup.string()
-    .matches(/\p{L}/u)
-    .required(),
+  name: Yup.string().matches(/\p{L}/u).required(),
   email: Yup.string().email().required(),
 });
 
@@ -142,7 +140,8 @@ export default function BookForm({ camperId }: BookFormProps) {
           </label>
           <input
             id={`${fieldId}-email`}
-            type="email"
+            // type="email"
+            type="text"
             name="email"
             required
             placeholder="Email*"
@@ -161,7 +160,8 @@ export default function BookForm({ camperId }: BookFormProps) {
         <div className={css["book-form-field"]}>
           <input
             id={`${fieldId}-email`}
-            type="email"
+            // type="email"
+            type="text"
             name="email"
             required
             placeholder="Email*"

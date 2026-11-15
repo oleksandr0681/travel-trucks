@@ -79,46 +79,6 @@ export default function FiltersBarClient() {
       }
     }
 
-    // function load() {
-    //   const filters = window.localStorage.getItem("filters");
-    //   if (filters !== null && formRef.current !== null) {
-    //     try {
-    //       const parsedFilters = JSON.parse(filters) as unknown as FiltersData;
-    //       const location = formRef.current?.elements.namedItem("location");
-    //       if (
-    //         location instanceof HTMLInputElement &&
-    //         parsedFilters.location !== undefined
-    //       ) {
-    //         location.value = parsedFilters.location;
-    //       }
-    //       const formList = formRef.current.elements.namedItem("form");
-    //       if (
-    //         formList instanceof RadioNodeList &&
-    //         parsedFilters.form !== undefined
-    //       ) {
-    //         formList.value = parsedFilters.form;
-    //       }
-    //       const engineList = formRef.current.elements.namedItem("engine");
-    //       if (
-    //         engineList instanceof RadioNodeList &&
-    //         parsedFilters.engine !== undefined
-    //       ) {
-    //         engineList.value = parsedFilters.engine;
-    //       }
-    //       const transmissionList =
-    //         formRef.current.elements.namedItem("transmission");
-    //       if (
-    //         transmissionList instanceof RadioNodeList &&
-    //         parsedFilters.transmission !== undefined
-    //       ) {
-    //         transmissionList.value = parsedFilters.transmission;
-    //       }
-    //     } catch (error) {
-    //       toast.error(error instanceof Error ? error.message : "Something went wrong");
-    //     }
-    //   }
-    // }
-
     function load() {
       const filters = window.localStorage.getItem("filters");
       const formEl = formRef.current;
@@ -139,7 +99,7 @@ export default function FiltersBarClient() {
           parsed.transmission ?? "",
         );
       } catch (error) {
-        console.log(error);
+        toast.error(error instanceof Error ? error.message : "Something went wrong");
       }
     }
 

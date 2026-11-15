@@ -25,7 +25,9 @@ async function Content({ searchParams }: CatalogProps) {
 
   await queryClient.infiniteQuery({
     queryKey: ["campers", form, transmission, engine, location],
-    queryFn: () => fetchCampers({page: 1, perPage: 4}),
+    queryFn: ({ pageParam }) => {
+      return fetchCampers({ page: pageParam, perPage: 4, form, transmission, engine, location });
+    },
     initialPageParam: 1,
   });
 

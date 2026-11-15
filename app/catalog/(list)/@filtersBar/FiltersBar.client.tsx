@@ -66,43 +66,80 @@ export default function FiltersBarClient() {
   };
 
   useEffect(() => {
+    function setRadioGroup(
+      group: Element | RadioNodeList | null,
+      value: string,
+    ) {
+      if (group instanceof RadioNodeList) {
+        group.forEach((node) => {
+          if (node instanceof HTMLInputElement) {
+            node.checked = node.value === value;
+          }
+        });
+      }
+    }
+
+    // function load() {
+    //   const filters = window.localStorage.getItem("filters");
+    //   if (filters !== null && formRef.current !== null) {
+    //     try {
+    //       const parsedFilters = JSON.parse(filters) as unknown as FiltersData;
+    //       const location = formRef.current?.elements.namedItem("location");
+    //       if (
+    //         location instanceof HTMLInputElement &&
+    //         parsedFilters.location !== undefined
+    //       ) {
+    //         location.value = parsedFilters.location;
+    //       }
+    //       const formList = formRef.current.elements.namedItem("form");
+    //       if (
+    //         formList instanceof RadioNodeList &&
+    //         parsedFilters.form !== undefined
+    //       ) {
+    //         formList.value = parsedFilters.form;
+    //       }
+    //       const engineList = formRef.current.elements.namedItem("engine");
+    //       if (
+    //         engineList instanceof RadioNodeList &&
+    //         parsedFilters.engine !== undefined
+    //       ) {
+    //         engineList.value = parsedFilters.engine;
+    //       }
+    //       const transmissionList =
+    //         formRef.current.elements.namedItem("transmission");
+    //       if (
+    //         transmissionList instanceof RadioNodeList &&
+    //         parsedFilters.transmission !== undefined
+    //       ) {
+    //         transmissionList.value = parsedFilters.transmission;
+    //       }
+    //     } catch (error) {
+    //       toast.error(error instanceof Error ? error.message : "Something went wrong");
+    //     }
+    //   }
+    // }
+
     function load() {
       const filters = window.localStorage.getItem("filters");
-      if (filters !== null && formRef.current !== null) {
-        try {
-          const parsedFilters = JSON.parse(filters) as unknown as FiltersData;
-          const location = formRef.current?.elements.namedItem("location");
-          if (
-            location instanceof HTMLInputElement &&
-            parsedFilters.location !== undefined
-          ) {
-            location.value = parsedFilters.location;
-          }
-          const formList = formRef.current.elements.namedItem("form");
-          if (
-            formList instanceof RadioNodeList &&
-            parsedFilters.form !== undefined
-          ) {
-            formList.value = parsedFilters.form;
-          }
-          const engineList = formRef.current.elements.namedItem("engine");
-          if (
-            engineList instanceof RadioNodeList &&
-            parsedFilters.engine !== undefined
-          ) {
-            engineList.value = parsedFilters.engine;
-          }
-          const transmissionList =
-            formRef.current.elements.namedItem("transmission");
-          if (
-            transmissionList instanceof RadioNodeList &&
-            parsedFilters.transmission !== undefined
-          ) {
-            transmissionList.value = parsedFilters.transmission;
-          }
-        } catch (error) {
-          toast.error(error instanceof Error ? error.message : "Something went wrong");
+      const formEl = formRef.current;
+      if (filters === null || formEl === null) return;
+
+      try {
+        const parsed = JSON.parse(filters) as Partial<FiltersData>;
+
+        const location = formEl.elements.namedItem("location");
+        if (location instanceof HTMLInputElement) {
+          location.value = parsed.location ?? "";
         }
+
+        setRadioGroup(formEl.elements.namedItem("form"), parsed.form ?? "");
+        setRadioGroup(formEl.elements.namedItem("engine"), parsed.engine ?? "");
+        setRadioGroup(
+          formEl.elements.namedItem("transmission"),
+          parsed.transmission ?? "",
+        );
+      } catch (error) {
+        console.log(error);
       }
     }
 

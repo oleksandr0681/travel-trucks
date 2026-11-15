@@ -1,12 +1,27 @@
+"use client";
+
 import css from "./NotFound.module.css";
 import Image from "next/image";
 import { MdOutlineClose } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function NotFound() {
   const router = useRouter();
+  const params =useSearchParams();
+  console.log(params.toString());
 
-  const handleClick = () => {
+  const handleClear = () => {
+    const filtersData = {location: "", form: "", engine: "", transmission: ""};
+    const jsonFiltersData = JSON.stringify(filtersData);
+    window.localStorage.setItem("filters", jsonFiltersData);
+    window.dispatchEvent(new Event("filters-changed"));
+  };
+
+  const handleViewAll = () => {
+    const filtersData = {location: "", form: "", engine: "", transmission: ""};
+    const jsonFiltersData = JSON.stringify(filtersData);
+    window.localStorage.setItem("filters", jsonFiltersData);
+    window.dispatchEvent(new Event("filters-changed"));
     router.push("/catalog");
   };
 
@@ -28,14 +43,14 @@ export default function NotFound() {
       <div className={css.buttons}>
         <button
           type="button"
-          onClick={handleClick}
+          onClick={handleClear}
           className={css["clear-button"]}
         >
           <MdOutlineClose className={css["clear-symbol"]} /> Clear filters
         </button>
         <button
           type="button"
-          onClick={handleClick}
+          onClick={handleViewAll}
           className={css["view-button"]}
         >
           View all campers

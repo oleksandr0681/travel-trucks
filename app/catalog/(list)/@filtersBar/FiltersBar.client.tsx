@@ -2,16 +2,17 @@
 
 import { MdOutlineClose } from "react-icons/md";
 import css from "./FiltersBar.module.css";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import { CiMap } from "react-icons/ci";
+import toast from "react-hot-toast";
 
 const FiltersFormSchema = Yup.object().shape({
   location: Yup.string(),
-  form: Yup.string().required("Select form"),
-  engine: Yup.string().required("Select engine"),
-  transmission: Yup.string().required("Select transmission"),
+  form: Yup.string(),
+  engine: Yup.string(),
+  transmission: Yup.string(),
 });
 
 interface FiltersError {
@@ -30,10 +31,12 @@ export default function FiltersBarClient() {
   const fieldId = useId();
   const router = useRouter();
   const [filtersError, setFiltersError] = useState<FiltersError | null>(null);
+  const [filtersData, setFiltersData] = useState<FiltersData | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleClear = () => {
     setFiltersError(null);
-    router.push("/catalog");
+    setFiltersData({ location: "", form: "", engine: "", transmission: "" });
   };
 
   const handleSubmit = (formData: FormData) => {
@@ -49,23 +52,72 @@ export default function FiltersBarClient() {
       }
     }
     if (isValid === true) {
-      if (
-        formData.get("location") !== "" &&
-        formData.get("location") !== undefined
-      ) {
-        router.push(
-          `/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}&location=${formData.get("location")}`,
-        );
-      } else {
-        router.push(
-          `/catalog?form=${formData.get("form")}&transmission=${formData.get("transmission")}&engine=${formData.get("engine")}`,
-        );
-      }
+      setFiltersData(values);
+      const jsonFiltersData = JSON.stringify(values);
+      window.localStorage.setItem("filters", jsonFiltersData);
+
+      const location = String(formData.get("location") ?? "");
+      const form = String(formData.get("form") ?? "");
+      const transmission = String(formData.get("transmission") ?? "");
+      const engine = String(formData.get("engine") ?? "");
+      const route = `/catalog?location=${location}&form=${form}&transmission=${transmission}&engine=${engine}`;
+      router.push(route);
     }
   };
 
+  useEffect(() => {
+    function load() {
+      const filters = window.localStorage.getItem("filters");
+      if (filters !== null && formRef.current !== null) {
+        try {
+          const parsedFilters = JSON.parse(filters) as unknown as FiltersData;
+          const location = formRef.current?.elements.namedItem("location");
+          if (
+            location instanceof HTMLInputElement &&
+            parsedFilters.location !== undefined
+          ) {
+            location.value = parsedFilters.location;
+          }
+          const formList = formRef.current.elements.namedItem("form");
+          if (
+            formList instanceof RadioNodeList &&
+            parsedFilters.form !== undefined
+          ) {
+            formList.value = parsedFilters.form;
+          }
+          const engineList = formRef.current.elements.namedItem("engine");
+          if (
+            engineList instanceof RadioNodeList &&
+            parsedFilters.engine !== undefined
+          ) {
+            engineList.value = parsedFilters.engine;
+          }
+          const transmissionList =
+            formRef.current.elements.namedItem("transmission");
+          if (
+            transmissionList instanceof RadioNodeList &&
+            parsedFilters.transmission !== undefined
+          ) {
+            transmissionList.value = parsedFilters.transmission;
+          }
+        } catch (error) {
+          toast.error(error instanceof Error ? error.message : "Something went wrong");
+        }
+      }
+    }
+
+    load();
+    window.addEventListener("filters-changed", load);
+    return () => window.removeEventListener("filters-changed", load);
+  }, []);
+
   return (
-    <form action={handleSubmit} className={css.form}>
+    <form
+      action={handleSubmit}
+      key={filtersData ? JSON.stringify(filtersData) : "empty"}
+      ref={formRef}
+      className={css.form}
+    >
       <div className={css["form-group"]}>
         <label htmlFor={`${fieldId}-location`}>Location</label>
         <span className={css["input-wrapper"]}>
@@ -74,6 +126,7 @@ export default function FiltersBarClient() {
             type="text"
             name="location"
             placeholder="City"
+            defaultValue={filtersData?.location}
             className={`${css.input} ${css["location-input"]}`}
           />
           <CiMap className={css.map} />
@@ -88,6 +141,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="form"
             value="alcove"
+            defaultChecked={filtersData?.form === "alcove"}
             className={css.radio}
           />
           Alcove
@@ -97,6 +151,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="form"
             value="panel_van"
+            defaultChecked={filtersData?.form === "panel_van"}
             className={css.radio}
           />
           Panel Van
@@ -106,6 +161,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="form"
             value="integrated"
+            defaultChecked={filtersData?.form === "integrated"}
             className={css.radio}
           />
           Integrated
@@ -115,6 +171,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="form"
             value="semi_integrated"
+            defaultChecked={filtersData?.form === "semi_integrated"}
             className={css.radio}
           />
           Semi Integrated
@@ -131,6 +188,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="engine"
             value="diesel"
+            defaultChecked={filtersData?.engine === "diesel"}
             className={css.radio}
           />
           Diesel
@@ -140,6 +198,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="engine"
             value="petrol"
+            defaultChecked={filtersData?.engine === "petrol"}
             className={css.radio}
           />
           Petrol
@@ -149,6 +208,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="engine"
             value="hybrid"
+            defaultChecked={filtersData?.engine === "hybrid"}
             className={css.radio}
           />
           Hybrid
@@ -158,6 +218,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="engine"
             value="electric"
+            defaultChecked={filtersData?.engine === "electric"}
             className={css.radio}
           />
           Electric
@@ -174,6 +235,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="transmission"
             value="automatic"
+            defaultChecked={filtersData?.transmission === "automatic"}
             className={css.radio}
           />
           Automatic
@@ -183,6 +245,7 @@ export default function FiltersBarClient() {
             type="radio"
             name="transmission"
             value="manual"
+            defaultChecked={filtersData?.transmission === "manual"}
             className={css.radio}
           />
           Manual

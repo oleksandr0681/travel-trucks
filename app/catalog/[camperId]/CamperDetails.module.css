@@ -128,7 +128,8 @@
   margin-top: 16px;
   max-width: 602px;
   display: flex;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   column-gap: 8px;
 }
 

@@ -23,15 +23,9 @@ async function Content({ searchParams }: CatalogProps) {
   const engine = (searchParameters.engine as string) || undefined;
   const location = (searchParameters.location as string) || undefined;
 
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["campers", form, transmission, engine, location],
-  //   queryFn: () => fetchCampers({}),
-  // });
-
   await queryClient.infiniteQuery({
     queryKey: ["campers", form, transmission, engine, location],
     queryFn: () => fetchCampers({page: 1, perPage: 4}),
-    // queryFn: () => fetchCampers({}),
     initialPageParam: 1,
   });
 

@@ -42,8 +42,14 @@ main {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 ul {
@@ -58,7 +64,16 @@ a {
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
+  background-color: var(--grey-green);
+  transition-property: background-color;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--green-hover);
 }
 
 img {

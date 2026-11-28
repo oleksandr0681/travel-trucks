@@ -66,7 +66,7 @@ a {
 button {
   cursor: pointer;
   background-color: var(--grey-green);
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 300ms;
   transition-timing-function: linear;
 }
@@ -74,6 +74,7 @@ button {
 button:hover,
 button:focus {
   background-color: var(--green-hover);
+  color: var(--white);
 }
 
 img {
